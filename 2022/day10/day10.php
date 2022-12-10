@@ -14,7 +14,7 @@ class CPU {
     protected mixed $beforeCycleHook = null;
     protected mixed $afterCycleHook = null;
 
-    public function setInput(array $commands): void
+    public function setCommands(array $commands): void
     {
         $this->commands = $commands;
     }
@@ -97,7 +97,7 @@ class CrtRenderer
         });
     }
 
-    public function draw(): void
+    public function render(): void
     {
         echo 'Part2' . PHP_EOL;
         $this->cpu->run();
@@ -134,9 +134,9 @@ class CrtRenderer
 $rawInput = file_get_contents('input.txt');
 $input = array_map(fn ($line) => explode(' ', $line), explode(PHP_EOL, $rawInput));
 $cpu = new CPU();
-$cpu->setInput($input);
+$cpu->setCommands($input);
 $cpu->run();
 $cpu->report();
 
 $crt = new CrtRenderer($cpu);
-$crt->draw();
+$crt->render();
